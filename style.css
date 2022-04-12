@@ -4,3 +4,7 @@
    Description: Simple thème WordPress de type magazine servant de démonstration
    Version: 0.1
 */
+
+body {
+   color: red;
+}
