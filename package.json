@@ -1,0 +1,16 @@
+{
+  "name": "wp-demo-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "/node_modules/.bin/dart-sass ./styles/scss/style.scss ./styles/main2.css --no-source-map",
+    "sass-watch": "node_modules/.bin/sass --watch ./styles/scss/style.scss ./styles/main2.css --no-source-map"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dart-sass": "^1.25.0"
+  }
+}

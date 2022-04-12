@@ -1,0 +1,275 @@
+@import "mixins";
+
+@include create-classes(".p-", "padding");
+@include create-classes(".m-", "margin");
+
+@import "partials/colors";
+@import "partials/fonts";
+@import "partials/titles";
+
+$gap: 2rem;
+
+html {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body {
+  background-color: $main-dark-color;
+  color: $secondary-light-color;
+  font-family: $content-font;
+  padding: 0;
+  margin: 0;
+
+  header {
+    .titre-principal {
+      a {
+        @include links($secondary-dark-color, $main-dark-color, $secondary-dark-color, $secondary-dark-color, true);
+      }
+    }
+    background-color: $secondary-light-color;
+    color: $main-dark-color;
+    padding: 1rem;
+    border-bottom: 5px solid $secondary-dark-color;
+    .conteneur {
+      display: flex;
+    }
+
+    nav {
+      display: flex;
+      flex: 1 1 auto;
+      align-items: center;
+
+      //first div
+      & > div {
+        display: flex;
+        flex: 1 1 auto;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        height: 50%;
+      }
+
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        justify-content: space-around;
+        padding: 0 1rem;
+        margin: 0;
+        flex: 1 1 auto;
+        height: 100%;
+        li {
+          flex: 1 1 auto;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: $secondary-dark-color;
+          transition: all 0.2s ease-out;
+
+          &:hover {
+            background-color: $main-dark-color;
+          }
+
+          &.current-menu-item {
+            background-color: $main-dark-color;
+            pointer-events: none;
+            a {
+              text-decoration: none;
+              font-weight: bold;
+            }
+          }
+
+          a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .conteneur {
+    margin: 0 1rem;
+
+    form {
+      background-color: red;
+      height: 2rem;
+      display: flex;
+      transition: all 0.5s ease-out;
+
+      &:focus-within {
+        height: 3rem;
+      }
+      input {
+        flex: 1 1 auto;
+        border-radius: 0;
+        border: 3px solid $secondary-dark-color;
+        border-top: none;
+        font-size: 1rem;
+        outline: none;
+      }
+    }
+
+    & > div {
+      margin-top: 1rem;
+    }
+  }
+
+  section.trois-quart {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $gap;
+
+    article {
+      border: 2px solid $secondary-dark-color;
+      box-sizing: border-box;
+      transition: all 0.2s ease-out;
+      box-shadow: 1px 1px 15px 5px rgba(0, 0, 0, 0.25);
+      flex: 1 1 calc(25% - 3rem);
+
+      @include large {
+        flex: 1 1 calc(33% - 2rem);
+      }
+      @include medium {
+        flex: 1 1 calc(50% - 1rem);
+      }
+      @include small {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+
+      &:hover {
+        transform: rotateZ(1deg);
+      }
+
+      .texte-article {
+        padding: 0.25rem 0.5rem;
+      }
+    }
+  }
+
+  section.quart {
+    .wp-block-calendar {
+      max-width: 50%;
+      margin: 0 auto;
+
+      caption {
+        color: $main-light-color;
+        text-transform: capitalize;
+      }
+
+      th {
+        background-color: $secondary-dark-color;
+        color: $main-light-color;
+      }
+      td {
+        background-color: $main-light-color;
+        color: $main-dark-color;
+      }
+    }
+    //widget de catégories
+    .widget-container:nth-of-type(2) {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+
+      @include small {
+        flex-direction: column;
+      }
+
+      .side-widget:nth-of-type(2) {
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        @include small {
+          height: 2rem;
+        }
+        ul {
+          display: flex;
+          flex: 1 1 auto;
+
+          justify-content: space-around;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          gap: 3rem;
+
+          @include medium {
+            gap: 1rem;
+          }
+
+          li {
+            height: 100%;
+            width: 100%;
+            background-color: $secondary-dark-color;
+            box-shadow: -1px -1px 15px 5px rgba(0, 0, 0, 0.25);
+            transition: all 0.2s ease-out;
+
+            &:hover {
+              background-color: $secondary-light-color;
+              a {
+                @include links($main-dark-color, $main-dark-color, $main-dark-color, $main-dark-color, false);
+              }
+            }
+
+            &.current-cat {
+              background-color: $secondary-light-color;
+              pointer-events: none;
+              a {
+                @include links($main-dark-color, $main-dark-color, $main-dark-color, $main-dark-color, false);
+              }
+            }
+            a {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &:is(.category, .home) {
+    section.trois-quart {
+      article {
+        max-width: 50%;
+        @include small {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
+
+main > article {
+  padding: 1rem;
+  margin: 1rem auto 2rem;
+  img {
+    max-width: 40vw;
+  }
+}
+
+a {
+  @include links($link-color, $link-color, $link-hover-color, $link-color, true);
+}
+
+ul {
+  list-style-type: none;
+}
+
+footer {
+  text-align: center;
+  background-color: $secondary-light-color;
+  color: $main-dark-color;
+  padding: 1rem;
+  border-top: 5px solid $secondary-dark-color;
+}

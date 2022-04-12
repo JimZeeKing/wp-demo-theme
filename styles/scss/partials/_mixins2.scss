@@ -1,0 +1,45 @@
+@mixin links($link, $visited, $hover, $active, $underlined: false) {
+  & {
+    color: $link;
+    text-decoration: if($underlined, underline, none);
+    &:visited {
+      color: $visited;
+    }
+    &:hover {
+      color: $hover;
+    }
+    &:active,
+    &:focus {
+      color: $active;
+    }
+  }
+}
+
+$small: 500px;
+$medium: 768px;
+$large: 1024px;
+$desktop: 1280px;
+
+@mixin small {
+  @media only screen and (max-width: $small) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @media only screen and (max-width: $medium) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media only screen and (max-width: $large) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (max-width: $desktop) {
+    @content;
+  }
+}

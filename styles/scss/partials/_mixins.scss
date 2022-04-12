@@ -1,0 +1,41 @@
+@mixin links($link, $visited, $hover, $active, $underlined: false) {
+  & {
+    color: $link;
+    text-decoration: if($underlined, underline, none);
+    &:visited {
+      color: $visited;
+    }
+    &:hover {
+      color: $hover;
+    }
+    &:active,
+    &:focus {
+      color: $active;
+    }
+  }
+}
+
+@use "sass:color";
+
+$reddish: red;
+
+ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style-type: none;
+  gap: 1rem;
+  flex-wrap: wrap;
+  height: 100vh;
+}
+
+.reddish {
+  flex: 1 1 calc(20% - 4rem);
+  background-color: $reddish;
+}
+
+@for $i from 1 through 5 {
+  .rl#{$i}0 {
+    background-color: color.scale($reddish, $lightness: 10% * $i);
+  }
+}
